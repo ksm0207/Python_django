@@ -122,6 +122,12 @@
    </div>
   
    <button>검색하기</button> 
-</form>    
+</form>
+
+<h3>검색결과</h3>
+
+{% for room in rooms  %}
+     <h3>{{room.name}}</h3>
+{% endfor %}
    
 {% endblock  %}
