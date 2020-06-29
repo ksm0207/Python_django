@@ -37,10 +37,56 @@
            <option value="{{room_type.pk}}" {% if s_room_type == room_type.pk  %}selected{% endif %}> {{room_type.name}} </option>
         {% endfor %}
    </select>
-   
    </div>
 
+   <div>
+        <label for="price">가격</label>
+        <input value="{{price}}" type="number" name="price" id="price" placeholder="가격">
+   </div>
 
+   <div>
+        <label for="guests">게스트</label>
+        <input value="{{guests}}" type="number" name="guests" id="guests" placeholder="게스트">
+   </div>
+
+   <div>
+        <label for="bedrooms">침실</label>
+        <input value="{{bedrooms}}" type="number" name="bedrooms" id="bedrooms" placeholder="침실">
+   </div>
+  
+   <div>
+        <label for="beds">침대</label>
+        <input value="{{beds}}" type="number" name="beds" id="beds" placeholder="침대">
+   </div>
+   
+   <div>
+        <label for="baths">화장실</label>
+        <input value="{{baths}}" type="number" name="baths" id="baths" placeholder="화장실">
+   </div>
+
+   <div>
+    <h3>편의시설</h3>
+      <ul>
+        {% for amenity in amenities  %}
+        <li>
+            <label for =="a_{{amenity.pk}}">{{amenity.name}} </label>
+            <input id="a_{{amenity.pk}}" name="amenities" type="checkbox" value={{amenity.pk}}>
+        </li>
+        {% endfor %}
+      </ul>
+   </div>
+
+    <h3>시설</h3>
+      <ul>
+        {% for facility in facilities  %}
+        <li>
+            <label for="f_{{facility.pk}}">{{facility.name}}</label>
+            <input id="f_{{facility.pk}}" name="facilities" type="checkbox" value = {{facility.pk}}>
+        </li>
+        {% endfor %}
+      </ul>
+   </div>
+  
    <button>검색하기</button> 
 </form>    
    
