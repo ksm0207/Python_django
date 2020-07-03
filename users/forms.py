@@ -19,4 +19,3 @@ class LoginForm(forms.Form):
         except models.User.DoesNotExist:
             self.add_error("email", forms.ValidationError("존재하지 않는 사용자 입니다"))
 
-        # print("clean_password")
