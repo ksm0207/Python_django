@@ -41,6 +41,10 @@ class User(AbstractUser):
     birthday = models.DateField(blank=True, null=True)
 
     gender = models.CharField(blank=True, choices=GENDER_CHOICES, max_length=10,)
-    language = models.CharField(blank=True, choices=LANGUAGE_CHOICES, max_length=25,)
-    currency = models.CharField(blank=True, choices=CURRENCY_CHOICES, max_length=3,)
+    language = models.CharField(
+        blank=True, choices=LANGUAGE_CHOICES, max_length=25, default=LANGUAGE_KOREAN
+    )
+    currency = models.CharField(
+        blank=True, choices=CURRENCY_CHOICES, max_length=3, default=CURRENCY_KRW
+    )
     superhost = models.BooleanField(default="False")
