@@ -48,8 +48,8 @@ class SignUpView(FormView):
             user.email_verified = True
             user.email_secret = ""
             user.save()
-            # to do : add error message
+            # to do : add error message try
         except models.User.DoesNotExist:
             pass
-            # to do : add error message
+            # to do : add error message except
         return redirect(reverse("core:home"))
