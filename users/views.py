@@ -53,3 +53,9 @@ class SignUpView(FormView):
             pass
             # to do : add error message except
         return redirect(reverse("core:home"))
+
+    def github_login(request):
+        pass
+
+    def github_callback(request):
+        pass
