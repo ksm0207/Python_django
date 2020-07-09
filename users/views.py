@@ -116,14 +116,12 @@ def github_callback(request):
                         )
                         user.set_unusable_password()
                         user.save()
-
-                        login(request, user)
-                        return redirect(reverse("core:home"))
+                    login(request, user)
+                    return redirect(reverse("core:home"))
                 else:
                     raise GithubException()
         else:
             raise GithubException()
-
     except GithubException:
         # send error message
         return redirect(reverse("users:login"))
