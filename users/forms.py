@@ -1,5 +1,6 @@
 from django import forms
 from . import models
+from django.contrib.auth import password_validation
 
 
 class LoginForm(forms.Form):
@@ -25,21 +26,44 @@ class SignUpForm(forms.ModelForm):
         model = models.User
         fields = ("first_name", "last_name", "email")
 
-    password = forms.CharField(widget=forms.PasswordInput)
-    password1 = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
+    password = forms.CharField(
+        label="Password",
+        strip=False,
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        help_text=password_validation.password_validators_help_text_html(),
+    )
+
+    password1 = forms.CharField(
+        label="Password confirmation",
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        strip=False,
+        help_text="이전과 동일한 비밀번호를 입력하세요.",
+    )
+
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        try:
+            models.User.objects.get(email=email)
+            raise forms.ValidationError("해당 이메일은 존재하는 이메일입니다")
+        except models.User.DoesNotExist:
+            return email
 
     def clean_password1(self):
         password = self.cleaned_data.get("password")
         password1 = self.cleaned_data.get("password1")
+
         if password != password1:
-            raise forms.ValidationError("일치하지 않은 비밀번호 입니다")
+            raise forms.ValidationError("비밀번호가 일치하지 않습니다")
         else:
-            return password
+            try:
+                password_validation.validate_password(password1, self.instance)
+                return password
+            except forms.ValidationError as error:
+                self.add_error("password", error)
 
     def save(self, *args, **kwargs):
         user = super().save(commit=False)
-        email = self.cleaned_data.get("email")
+        user.username = self.cleaned_data.get("email")
         password = self.cleaned_data.get("password")
-        user.username = email
         user.set_password(password)
         user.save()
