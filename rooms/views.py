@@ -22,6 +22,9 @@ class RoomDetail(DetailView):
 
 
 class SearchView(View):
+
+    """ SearchView Definition """
+
     def get(self, request):
 
         country = request.GET.get("country")
