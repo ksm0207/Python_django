@@ -1,3 +1,4 @@
 .env
 uploads
 node_modules
+static
