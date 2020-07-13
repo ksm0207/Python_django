@@ -7,6 +7,11 @@
 {% block content  %}
 
 
+    <div class=" container w-3/5 rounded-xl bg-cover mx-auto bg-gray-800 h-60vh mt-32 mb-24" style="background-image:url(static/img/test.png)">
+
+    
+    </div>
+
 {% for room in rooms  %}
 <h4>
     <a href="{% url "rooms:detail" room.pk%}">
