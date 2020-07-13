@@ -1,0 +1,25 @@
+{
+  "name": "start_django",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksm0207/Python_django.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ksm0207/Python_django/issues"
+  },
+  "scripts": {
+    "css": "gulp"
+  },
+  "homepage": "https://github.com/ksm0207/Python_django#readme",
+  "devDependencies": {
+    "autoprefixer": "^9.8.5",
+    "gulp": "^4.0.2",
+    "gulp-csso": "^4.0.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.1.0",
+    "node-sass": "^4.14.1",
+    "tailwindcss": "^1.4.6"
+  }
+}
