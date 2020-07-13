@@ -1,4 +1,4 @@
-    <ul class="flex items-center text-sm font-medium h-full">
+    <ul class="flex items-center text-sm font-bold h-full">
       {% if user.is_authenticated  %}
         <li class="nav_link"><a href="{% url "users:logout" %}">Log out</a></li>
       {% else %}
