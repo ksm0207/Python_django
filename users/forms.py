@@ -1,6 +1,6 @@
 from django import forms
 from . import models
-from django.contrib.auth import password_validation
+from django.contrib.auth.forms import UserCreationForm
 
 
 class LoginForm(forms.Form):
@@ -26,19 +26,9 @@ class SignUpForm(forms.ModelForm):
         model = models.User
         fields = ("first_name", "last_name", "email")
 
-    password = forms.CharField(
-        label="Password",
-        strip=False,
-        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
-        help_text=password_validation.password_validators_help_text_html(),
-    )
-
-    password1 = forms.CharField(
-        label="Password confirmation",
-        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
-        strip=False,
-        help_text="이전과 동일한 비밀번호를 입력하세요.",
-    )
+    username = forms.EmailField(label="Email")
+    password = forms.CharField(widget=forms.PasswordInput)
+    password1 = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
@@ -51,19 +41,15 @@ class SignUpForm(forms.ModelForm):
     def clean_password1(self):
         password = self.cleaned_data.get("password")
         password1 = self.cleaned_data.get("password1")
-
         if password != password1:
-            raise forms.ValidationError("비밀번호가 일치하지 않습니다")
+            raise forms.ValidationError("Password confirmation does not match")
         else:
-            try:
-                password_validation.validate_password(password1, self.instance)
-                return password
-            except forms.ValidationError as error:
-                self.add_error("password", error)
+            return password
 
     def save(self, *args, **kwargs):
         user = super().save(commit=False)
-        user.username = self.cleaned_data.get("email")
+        email = self.cleaned_data.get("email")
         password = self.cleaned_data.get("password")
+        user.username = email
         user.set_password(password)
         user.save()
