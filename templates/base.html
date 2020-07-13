@@ -9,13 +9,13 @@
   </head>
   <body class="text-gray-800">
     <header class="container max-w-full flex items-center justify-between px-6 h-20 border-b border-gray-400">
-      <div class="flex items-center">
-        <a href="{% url "core:home" %}" class="mr-6">
+      <div class="flex items-center w-1/3">
+       <a href="{% url "core:home" %}" class="mr-6">
            <img class="w-8" src="{% static 'img/cafe.png' %}"/>
-       </a>   
+      </a>    
     {% block search-bar %}
-    <form method="get" action="{% url "rooms:search" %}">
-      <input class="border px-2 py-1 rounded-lg" name="city" placeholder = "도시를 검색해보세요"/>
+    <form method="get" action="{% url "rooms:search" %} " class="w-9/12">
+      <input class="search-box border px-5 w-full text-sm font-medium text-gray-900 placeholder-gray-600 py-3 rounded-lg w-64 shadow-md hover:shadow-lg focus:outline-none"name="city" placeholder = "도시를 검색해보세요"/>
     </form>
     {% endblock search-bar  %}
     </div>
