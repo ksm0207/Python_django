@@ -6,20 +6,16 @@
 
 {% block content  %}
 
+<div class="container mx-auto">
 
-    <div class=" container w-3/5 rounded-xl bg-cover mx-auto bg-gray-800 h-60vh mt-30 mb-24" style="background-image:url(static/img/test.png)">
-
-    
+    <div class=" rounded-xl -mx-40 bg-gray-200 h-65vh mt-30 mb-24 bg-cover bg-center" style=" background-image:url(static/img/cafe_number01.png)"></div>
+   
+    <div class="flex flex-wrap -mx-40">
+    {% for room in rooms  %}
+         {% include 'partials/room_card.html' with room=room  %}
+    {% endfor %}
     </div>
-
-{% for room in rooms  %}
-<h4>
-    <a href="{% url "rooms:detail" room.pk%}">
-         {{room.name}} / ${{room.price}}
-    </a>
-</h4>
-{% endfor %}
-
+    
  <h5>
  {% if page_obj.has_previous  %}
   <a href="?page={{page_obj.previous_page_number}}">이전</a>
@@ -30,11 +26,6 @@
  {% if page_obj.has_next%}
   <a href="?page={{page_obj.next_page_number}}">다음</a> 
  {% endif %}
- </h5>
-
-
-
+ </h5>    
+    </div>
 {% endblock  %}
-
-
-
