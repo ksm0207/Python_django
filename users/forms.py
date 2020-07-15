@@ -1,6 +1,5 @@
 from django import forms
 from . import models
-from django.contrib.auth.forms import UserCreationForm
 
 
 class LoginForm(forms.Form):
@@ -27,14 +26,17 @@ class SignUpForm(forms.ModelForm):
     class Meta:
         model = models.User
         fields = ("first_name", "last_name", "email")
+        widgets = {
+            "first_name": forms.TextInput(attrs={"placeholder": "First Name"}),
+            "last_name": forms.TextInput(attrs={"placeholder": "Last Name"}),
+            "email": forms.EmailInput(attrs={"placeholder": "Email"}),
+        }
 
-    # username = forms.EmailField(label="Email")
-    password = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={"placeholder": "Password"})
+    )
     password1 = forms.CharField(
-        label=("Password confirmation"),
-        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
-        strip=False,
-        help_text=("확인을 위해 이전과 동일한 비밀번호를 입력하세요."),
+        widget=forms.PasswordInput(attrs={"placeholder": "Confirm Password"})
     )
 
     def clean_email(self):
