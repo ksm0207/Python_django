@@ -26,9 +26,14 @@ class SignUpForm(forms.ModelForm):
         model = models.User
         fields = ("first_name", "last_name", "email")
 
-    username = forms.EmailField(label="Email")
+    # username = forms.EmailField(label="Email")
     password = forms.CharField(widget=forms.PasswordInput)
-    password1 = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
+    password1 = forms.CharField(
+        label=("Password confirmation"),
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        strip=False,
+        help_text=("확인을 위해 이전과 동일한 비밀번호를 입력하세요."),
+    )
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
