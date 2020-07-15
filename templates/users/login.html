@@ -18,6 +18,11 @@
             <input type="password" placeholder="Password" class="mb-3">
             <button class="btn bg-red-500 text-white ">Login</button>
         </form>
+
+        <div class="mt-5"> 
+            <span class="mr-2 font-bold">계정이 없으신가요?</span>
+            <a href="{% url 'users:signup'%}" class="font-bold text-green-400">회원가입</a>
+        </div>
 </div>
     
 {% endblock content  %}
