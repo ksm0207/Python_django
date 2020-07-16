@@ -13,11 +13,16 @@
    
          {% include 'partials/social_login.html'  %}
 
-    <form method="POST" action="{% url "users:login" %}">
+    <form method="POST" action="{% url "users:signup" %}">
             {% csrf_token %}
             {{form.first_name}}
             {{form.last_name}}
             {{form.email}}
+
+
+            {{form.email.errors}}
+
+
             {{form.password}}
             {{form.password1}}
             <button class="btn bg-red-500 text-white ">Sign up</button>
