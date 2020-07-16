@@ -12,10 +12,15 @@
     <div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 mx-auto my-10 flex flex-col items-center border p-6 border-gray-400">
     {% include 'partials/social_login.html'  %}
 
-        <form method="POST" action="{% url "users:login" %}">
+        <form method="POST" action="{% url "users:login" %}" >
             {% csrf_token %}
-            {{form.email}}
-            {{form.password}}
+            <div class="input">
+                {{form.email}}
+            </div>
+
+            <div class="input">
+                {{form.password}}
+            </div>
             <button class="btn bg-red-500 text-white ">Login</button>
         </form>
 
