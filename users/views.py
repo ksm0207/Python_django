@@ -173,7 +173,7 @@ def kakao_callback(request):
         try:
             user = models.User.objects.get(email=email)
             if user.login_method != models.User.LOGIN_KAKAO:
-                raise KakaoException(f"다음과 같은 방법으로 로그인: {user.login_method}")
+                raise KakaoException(f"다음과 같은 방법으로 로그인 : {user.login_method}")
         except models.User.DoesNotExist:
             user = models.User.objects.create(
                 email=email,
