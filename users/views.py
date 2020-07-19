@@ -26,7 +26,7 @@ class LoginView(FormView):
 
 
 def log_out(request):
-    messages.info(request, f"로그아웃 하였습니다")
+    messages.info(request, f"로그아웃 하였습니다.")
     logout(request)
     return redirect(reverse("core:home"))
 
