@@ -8,9 +8,9 @@
         {% include 'mixins/user_avatar.html' with user=user %}
         
        <div class="flex items-center"> 
-        <span class="text-3xl mt-1 font-bold">{{user_obj.first_name}}</span>
+        <span class="text-3xl mt-1 ">{{user_obj.first_name}}</span>
         {% if user_obj.superhost %}
-            <i class="fas fa-check-circle text-green-300"></i>
+            <i class="fas fa-check-circle text-green-300 ml-2"></i>
         {% endif %}
        </div>
         
