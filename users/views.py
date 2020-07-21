@@ -224,7 +224,23 @@ class UpdateProfileView(UpdateView):
     def get_object(self, queryset=None):
         return self.request.user
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields["first_name"].widget.attrs = {"placeholder": "성"}
+        form.fields["last_name"].widget.attrs = {"placeholder": "이름"}
+        form.fields["bio"].widget.attrs = {"placeholder": "소개"}
+        form.fields["birthday"].widget.attrs = {"placeholder": "생일"}
+
+        return form
+
 
 class UpdatePasswordView(PasswordChangeView):
 
     template_name = "users/update_password.html"
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields["old_password"].widget.attrs = {"placeholder": "현재 비밀번호"}
+        form.fields["new_password1"].widget.attrs = {"placeholder": "새 비밀번호"}
+        form.fields["new_password2"].widget.attrs = {"placeholder": "새 비밀번호 확인"}
+        return form
