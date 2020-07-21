@@ -208,14 +208,14 @@ class UserProfileView(DetailView):
 class UpdateProfileView(UpdateView):
 
     model = models.User
-    template_name = "users/update-profile.html"
+    template_name = "users/update_profile.html"
     fields = (
         "first_name",
         "last_name",
         "avatar",
         "gender",
         "bio",
-        "birthdate",
+        "birthday",
         "language",
         "currency",
     )
