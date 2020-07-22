@@ -41,6 +41,13 @@ select {
   height: 70px;
 }
 
+.grid-img{
+  transition: all 0.2s linear;
+  &:hover{
+    transform: scale(1.2, 1.2);
+  }
+}
+
 form {
   .input {
     @apply mb-3;
