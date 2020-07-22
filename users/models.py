@@ -42,7 +42,7 @@ class User(AbstractUser):
         (CURRENCY_KRW, "KRW"),
     )
 
-    LOGIN_EMAIL = "Email"
+    LOGIN_EMAIL = "email"
     LOGIN_GITHUB = "Github"
     LOGIN_KAKAO = "Kakao"
 
