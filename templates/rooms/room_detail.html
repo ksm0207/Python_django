@@ -12,8 +12,9 @@
         <div class="h-full w-1/2 bg-center bg-cover" style="background-image:url({{room.first_photo}});"></div>
         <div class="h-full w-1/2 flex flex-wrap">
             {% for photo in room.get_next_four_photos %}
-                <div  style="background-image: url({{photo.file.url}});" class="w-1/2 h-auto bg-cover border border-gray-600 "></div>
-         {% endfor %}      
+                <div  style="background-image: url({{photo.file.url}});" class=" grid-img w-1/2 h-auto bg-cover border border-gray-600  "></div>
+                
+            {% endfor %}      
         </div>
     </div>
 {% endblock %}

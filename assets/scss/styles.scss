@@ -41,10 +41,10 @@ select {
   height: 70px;
 }
 
-.grid-img{
-  transition: all 0.2s linear;
-  &:hover{
-    transform: scale(1.2, 1.2);
+.grid-img {
+  transition: transform 0.5s ease-in-out;
+  &:hover {
+    transform: scale(1.03);
   }
 }
 
