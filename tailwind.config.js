@@ -13,10 +13,14 @@ module.exports = {
       },
       minHeight: {
         '50vh': '50vh',
+        '70vh': '70vh',
         '75vh': '75vh',
       },
       width: {
         '100vh': '100vh',
+      },
+      height: {
+        '70vh': '70vh',
       },
     },
   },
