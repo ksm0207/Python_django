@@ -15,7 +15,6 @@ class LoginView(mixins.LoggedOutOnlyView, FormView):
 
     template_name = "users/login.html"
     form_class = forms.LoginForm
-    success_url = reverse_lazy("core:home")
 
     def form_valid(self, form):
         email = form.cleaned_data.get("email")
@@ -262,4 +261,3 @@ class UpdatePasswordView(
 
     def get_success_url(self):
         return self.request.user.get_absolute_url()
-
