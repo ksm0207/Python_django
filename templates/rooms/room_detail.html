@@ -21,7 +21,7 @@
     <!-- ★ Create Room name,city,avatar,host.first_name -->
     <div class="container mx-auto flex justify-around pb-56">
        <div class="w-1/2">
-            <div class="flex justify-between">
+            <div class="flex justify-between"> 
                 <div>
                     <h4 class="text 3xl font-bold mb-px">{{room.name}}</h4>
                     <span class="text-gray-700 font-light">{{room.city}}</span>
@@ -35,7 +35,7 @@
             </div>
             <div class="flex" >
                 {{room.room_type}}
-                {{room.beds}}
+                {{room.get_beds}}
                 {{room.bedrooms}}
             </div>
        </div>
