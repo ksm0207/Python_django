@@ -13,7 +13,7 @@
 
         {% include 'mixins/room/room_form.html' with form=form cta="Update room" %}
             <div class="mt-5">
-                <a href="#" class="text-teal-500 font-medium">Edit Photos</a>
+                <a href="{% url 'rooms:photos' room.pk %}" class="text-teal-500 font-medium">사진 수정하기</a>
             </div>
     </div>
 {% endblock content %} 
