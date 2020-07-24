@@ -4,6 +4,9 @@ from django.core.paginator import Paginator
 from . import models, forms
 from django.http import Http404
 from users import mixins as user_mixins
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
 
 
 class HomeView(ListView):
@@ -148,3 +151,17 @@ class RoomPhotosView(user_mixins.LoggedInOnlyView, DetailView):
             raise Http404()
         return room
 
+
+@login_required
+def delete_photo(request, room_pk, photo_pk):
+    user = request.user
+    try:
+        room = models.Room.objects.get(pk=room_pk)
+        if room.host.pk != user.pk:
+            messages.error(request, "해당 사진은 삭제할 수 없습니다")
+        else:
+            models.Photo.objects.filter(pk=photo_pk).delete()
+            messages.success(request, "해당 사진을 삭제 하였습니다.")
+        return redirect(reverse("rooms:photos", kwargs={"pk": room_pk}))
+    except models.Room.DoesNotExist:
+        return redirect(reverse("core:home"))
