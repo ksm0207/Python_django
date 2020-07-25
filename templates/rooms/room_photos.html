@@ -19,7 +19,7 @@
         {% for photo in room.photos.all  %}
             <div class="mb-5 border p-6 border-gray-400 flex justify-between">
                 <div class="flex items-start">
-                    <img src="{{photo.file.url}}" class="w-32 h-32" />
+                    <img src="{{photo.file.url}}" class="grid-img w-32 h-32" />
                     <span class="ml-5 text-xl">{{photo.caption}}</span>
                 </div>
 
