@@ -10,6 +10,11 @@
 {% block content %}
 
     <div class="container mx-auto my-10 flex flex-col">
+
+        <div class="my-10 w-full">
+            <a href="{% url 'rooms:add-photo' room.pk %}" class="btn-link w-1/6 block">사진 업로드</a>
+        </div>
+
         <!-- Start Photo List -->
         {% for photo in room.photos.all  %}
             <div class="mb-5 border p-6 border-gray-400 flex justify-between">
@@ -27,7 +32,7 @@
             </div>
         {% endfor %}
     <!-- end of Photo List -->
-    
+
             <!-- Create Back to edit room -->
             <div class="flex justify-center mt-5 ">
                 <a href="{% url 'rooms:edit' room.pk %}" class="text-xl text-green-300 font-bold">뒤로가기</a>
