@@ -220,6 +220,7 @@ class UpdateProfileView(mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateView
     fields = (
         "first_name",
         "last_name",
+        "avatar",
         "gender",
         "bio",
         "birthday",
