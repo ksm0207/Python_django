@@ -171,7 +171,7 @@ class EditPhotoView(user_mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateVie
 
     model = models.Photo
     template_name = "rooms/photo_edit.html"
-    fields = ("caption",)
+    fields = ("caption", "file")
     pk_url_kwarg = "photo_pk"
     success_message = "사진 업데이트 완료~!"
 
