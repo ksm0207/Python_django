@@ -39,3 +39,4 @@ class CreatePhotoForm(forms.ModelForm):
         room = models.Room.objects.get(pk=pk)
         photo.room = room
         photo.save()
+      
