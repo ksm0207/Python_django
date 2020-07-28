@@ -119,6 +119,11 @@
        <div class="w-1/3">
         {% if room.host == user  %}
              <a href="{% url 'rooms:edit' room.pk %}" class="btn-link block">방 수정하기</a>
+        {% else %}
+            {% if not request.session.is_hosting  %}
+                {{room.get_calendars}}
+            {% endif %}
+                
         {% endif %}
         </div>
        <!-- end of Room-wide information width -->
