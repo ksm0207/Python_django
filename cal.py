@@ -6,7 +6,7 @@ class Calendar(calendar.Calendar):
         super().__init__(firstweekday=6)
         self.year = year
         self.month = month
-        self.day_names = ("월", "화", "수", "목", "금", "토", "일")
+        self.day_names = ("일", "월", "화", "수", "목", "금", "토")
         self.months = (
             "1월",
             "2월",
