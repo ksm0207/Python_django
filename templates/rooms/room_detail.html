@@ -121,9 +121,15 @@
              <a href="{% url 'rooms:edit' room.pk %}" class="btn-link block">방 수정하기</a>
         {% else %}
             {% if not request.session.is_hosting  %}
-                {{room.get_calendars}}
-            {% endif %}
-                
+             {% for calendar in room.get_calendars %}
+             <div>
+                {{calendar.get_month}}/{{calendar.year}}
+                {% for day in calendar.day_names  %}
+                    {{day}}
+                {% endfor %}
+            </div>
+            {% endfor %}
+          {% endif %}
         {% endif %}
         </div>
        <!-- end of Room-wide information width -->
