@@ -125,9 +125,9 @@
              <!-- Start Calendar -->
              <div class="mb-20">
                  
-                 <!-- Create Calendar Title -->
+                <!-- Create Calendar Title -->
                 <span class="text-center font-bold text-lg block mb-8">{{calendar.get_month}} / {{calendar.year}}</span>
-                 <!-- end of Calendar Title -->
+                <!-- end of Calendar Title -->
                 
                 <!-- Create Calendar grid -->
                 <div class="cal-grid mb-4">
@@ -138,18 +138,21 @@
                 <!-- end of Calendar grid -->
 
                 <!-- Create Calendar week -->
-                <div class="cal-grid">
-                    {% for week in calendar.get_days  %}
-                        {% if week != 0  %}
-                            <span class="bg-gray-200 w-full text-center font-bold rounded text-gray-600 p-1 hover:bg-green-200 hover:text-black cursor-pointer">{{week}}</span>
+            <div class="cal-grid">
+                {% for day in calendar.get_days  %}
+                    {% if day.number != 0  %}
+                        {% if day.past %}
+                            <span class="rounded bg-gray-200 w-full text-center p-1 text-gray-300">{{day}}</span>
                         {% else %}
-                             <span></span>
+                            <span class="bg-gray-200 w-full text-center font-bold rounded text-gray-600 p-1 hover:bg-green-200 hover:text-black cursor-pointer">{{day}}</span>
                         {% endif %}
+                    {% else %}
+                         <span></span>   
+                    {% endif %}
+                    
                     {% endfor %}
-                </div>
+            </div>
                 <!-- end of Calendar week -->
-
-
             </div>
             {% endfor %}
           {% endif %}
