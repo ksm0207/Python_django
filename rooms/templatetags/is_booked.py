@@ -15,3 +15,4 @@ def is_booked(room, day):
         return True
     except reservation_models.BookedDay.DoesNotExist:
         return False
+
