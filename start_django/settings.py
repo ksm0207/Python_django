@@ -147,3 +147,6 @@ EMAIL_FROM = "ksm03071@gmail.com"
 
 LOGIN_URL = "/users/login/"
 
+# Locale
+
+LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
