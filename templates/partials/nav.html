@@ -3,21 +3,21 @@
         <li class="nav_link">
             <a href="{%url 'users:switch-hosting'%}">
                 {% if request.session.is_hosting  %}
-                      Stop hosting
+                      호스팅 종료
                 {% else %}
-                      Start hosting
+                      호스팅 시작
                 {% endif %}
             </a>
         </li>
         {% if request.session.is_hosting  %}
-            <li class="nav_link"><a href="{% url 'rooms:create' %}">Create Room</a></li>
+            <li class="nav_link"><a href="{% url 'rooms:create' %}">방 만들기</a></li>
         {% endif %}
           
-        <li class="nav_link"><a href="{{ user.get_absolute_url }}">Profile</a></li>
-        <li class="nav_link"><a href="{% url "users:logout" %}">Log out</a></li>
+        <li class="nav_link"><a href="{{ user.get_absolute_url }}">프로필</a></li>
+        <li class="nav_link"><a href="{% url "users:logout" %}">로그아웃</a></li>
       {% else %}
-        <li class="nav_link"><a href="{% url "users:login" %}">Log in</a></li>
-        <li class="nav_link"><a href="{% url "users:signup" %}">Sign up</a></li>
+        <li class="nav_link"><a href="{% url "users:login" %}">로그인</a></li>
+        <li class="nav_link"><a href="{% url "users:signup" %}">회원가입</a></li>
       {% endif %}
     </ul>
     
