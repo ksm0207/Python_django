@@ -26,7 +26,8 @@
 input,
 textarea,
 select {
-  @apply rounded-sm py-5 font-light text-lg w-full text-left border border-gray-600 px-5;
+  height: 50px;
+  @apply rounded-sm  font-light text-lg w-full text-left border border-gray-600 px-5;
   &:focus {
     @apply outline-none border-green-300;
   }
@@ -35,10 +36,6 @@ select {
 textarea {
   resize: none;
   height: 100px;
-}
-
-select {
-  height: 70px;
 }
 
 .grid-img {
