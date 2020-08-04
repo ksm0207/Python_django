@@ -1,3 +1,10 @@
+{% load i18n %}
 <footer class="container mx-auto text-center py-10 border-t text-green-500 font-bold">
-   <a href="https://github.com/ksm0207">Github https://github.com/ksm0207</a>
+   <span>
+      {% trans 'Github:' %}
+   </span>
+   <a href="https://github.com/ksm0207">https://github.com/ksm0207</a>
+   <span>
+      <br>2020 Python {% trans 'Django' %}.<br>
+   </span>
 </footer>
