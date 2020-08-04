@@ -20,7 +20,7 @@
       <input
             class="search-box border px-5 w-full font-medium text-gray-900 placeholder-gray-600 py-3 rounded-lg  border-gray-400  shadow-md hover:shadow-lg focus:outline-none"
             name="city"
-            placeholder="{% trans "도시를 검색해 보세요" %}"
+            placeholder="{% trans "도시를 검색해보세요 ! " %}"
           />
     </form>
     {% endblock search-bar  %}
@@ -30,13 +30,12 @@
   {% block content  %}{% endblock  %}
   {% include "partials/footer.html" %}
   <script>
-    const langSelect = document.getElementById("js-lang")
-    const handleLangChange = () =>{
-      const selected = langSelect.value;
-      fetch(`{% url 'users:switch-language' %}?lang=${selected}`)
-      window.location.reload();
+    const langSelect = document.getElementById("js-lang");
+    const handleLangChange = () => {
+        const selected = langSelect.value;
+        fetch(`{% url 'users:switch-language' %}?lang=${selected}`).then(() => window.location.reload());
     }
-    langSelect.addEventListener("change", handleLangChange)
-  </script>
+    langSelect.addEventListener("change", handleLangChange);
+</script>
 </body>
 </html>

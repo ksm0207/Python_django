@@ -20,11 +20,11 @@ msgstr ""
 
 #: .\templates\base.html:23
 msgid "도시를 검색해보세요 ! "
-msgstr "Search By City !"
+msgstr "Buscar por ciudad !"
 
 #: .\templates\partials\footer.html:5
 msgid "비즈니스 룸"
-msgstr "Business room"
+msgstr "Sala de negocios "
 
 #: .\templates\partials\footer.html:9
 msgid "장고"
@@ -32,31 +32,31 @@ msgstr "Django"
 
 #: .\templates\partials\nav.html:8
 msgid "호스팅 종료"
-msgstr "Hosting ends"
+msgstr "Fin de alojamiento"
 
 #: .\templates\partials\nav.html:10
 msgid "호스팅 시작"
-msgstr "Start hosting"
+msgstr "Comience a hospedar"
 
 #: .\templates\partials\nav.html:15
 msgid "방 만들기"
-msgstr "Create Room"
+msgstr "Crear habitación"
 
 #: .\templates\partials\nav.html:18
 msgid "프로필"
-msgstr "Profile"
+msgstr "Perfil"
 
 #: .\templates\partials\nav.html:19
 msgid "로그아웃"
-msgstr "Log out"
+msgstr "Cerrar sesión"
 
 #: .\templates\partials\nav.html:21
 msgid "로그인"
-msgstr "Log In"
+msgstr "Iniciar sesión"
 
 #: .\templates\partials\nav.html:22
 msgid "회원가입"
-msgstr "Sign up"
+msgstr "Regístrate"
 
 #~ msgid "Test City "
-#~ msgstr "영어"
+#~ msgstr "스페인어"

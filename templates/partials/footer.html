@@ -2,17 +2,36 @@
 <footer class="container mx-auto text-center py-10 border-t text-green-500 font-bold">
    <div class="flex flex-col">
       <span>
-         {% trans '비즈니스 룸' %}
+         {% trans '비즈니스 룸' %} 
       </span>
       <a href="https://github.com/ksm0207">Github:  https://github.com/ksm0207  </a>
       <span>&copy;
-          2020 Python {% trans 'Django' %}.<br>
+         {% trans '장고' %} 
       </span>
    </div>
-   <div class="flex mt-10">
-      <select class="w-1/6 h-7 border border-gray-400 rounded-lg text-gray-700" id="js-lang">
-         <option value="kr">Korean</option>
-         <option value="en">English</option>
-      </select>
-   </div>
+   <div class="mt-10 flex">
+        {% get_current_language as LANGUAGE_CODE %}
+        <select class="w-1/5 h-8 border border-gray-400 rounded-lg" id="js-lang">
+            <option value="ko"
+                {% if LANGUAGE_CODE == "ko" %}
+                    selected
+                {% endif %}
+            >Korean</option>
+           <option value="en"
+                {% if LANGUAGE_CODE == "en" %}
+                    selected
+                {% endif %}
+            >English</option>
+            <option value="es"
+                {% if LANGUAGE_CODE == "es" %}
+                    selected
+                {% endif %}
+            >Spanish</option>
+            <option value="ja"
+            {% if LANGUAGE_CODE == "ja" %}
+                selected
+            {% endif %}
+        >Japan</option>
+        </select>
+    </div>
 </footer>

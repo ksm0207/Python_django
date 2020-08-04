@@ -1,23 +1,25 @@
-    <ul class="flex items-center text-sm font-bold h-full">
+{% load i18n %}
+
+   <ul class="flex items-center text-sm font-bold h-full">
       {% if user.is_authenticated  %}
         <li class="nav_link">
             <a href="{%url 'users:switch-hosting'%}">
                 {% if request.session.is_hosting  %}
-                      호스팅 종료
+                      {% trans '호스팅 종료' %} 
                 {% else %}
-                      호스팅 시작
+                      {% trans '호스팅 시작' %}
                 {% endif %}
             </a>
         </li>
         {% if request.session.is_hosting  %}
-            <li class="nav_link"><a href="{% url 'rooms:create' %}">방 만들기</a></li>
+            <li class="nav_link"><a href="{% url 'rooms:create' %}">{% trans '방 만들기' %}</a></li>
         {% endif %}
           
-        <li class="nav_link"><a href="{{ user.get_absolute_url }}">프로필</a></li>
-        <li class="nav_link"><a href="{% url "users:logout" %}">로그아웃</a></li>
+        <li class="nav_link"><a href="{{ user.get_absolute_url }}"> {% trans '프로필' %} </a></li>
+        <li class="nav_link"><a href="{% url "users:logout" %}"> {% trans '로그아웃' %} x</a></li>
       {% else %}
-        <li class="nav_link"><a href="{% url "users:login" %}">로그인</a></li>
-        <li class="nav_link"><a href="{% url "users:signup" %}">회원가입</a></li>
+        <li class="nav_link"><a href="{% url "users:login" %}"> {% trans '로그인' %} </a></li>
+        <li class="nav_link"><a href="{% url "users:signup" %}"> {% trans '회원가입' %} </a></li>
       {% endif %}
     </ul>
     

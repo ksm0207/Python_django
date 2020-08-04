@@ -16,47 +16,47 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: .\templates\base.html:23
 msgid "도시를 검색해보세요 ! "
-msgstr "Search By City !"
+msgstr "도시를 검색해보세요 !"
 
 #: .\templates\partials\footer.html:5
 msgid "비즈니스 룸"
-msgstr "Business room"
+msgstr "비즈니스 룸"
 
 #: .\templates\partials\footer.html:9
 msgid "장고"
-msgstr "Django"
+msgstr "장고"
 
 #: .\templates\partials\nav.html:8
 msgid "호스팅 종료"
-msgstr "Hosting ends"
+msgstr "호스팅 종료"
 
 #: .\templates\partials\nav.html:10
 msgid "호스팅 시작"
-msgstr "Start hosting"
+msgstr "호스팅 시작"
 
 #: .\templates\partials\nav.html:15
 msgid "방 만들기"
-msgstr "Create Room"
+msgstr "방 만들기"
 
 #: .\templates\partials\nav.html:18
 msgid "프로필"
-msgstr "Profile"
+msgstr "프로필"
 
 #: .\templates\partials\nav.html:19
 msgid "로그아웃"
-msgstr "Log out"
+msgstr "로그아웃"
 
 #: .\templates\partials\nav.html:21
 msgid "로그인"
-msgstr "Log In"
+msgstr "로그인"
 
 #: .\templates\partials\nav.html:22
 msgid "회원가입"
-msgstr "Sign up"
+msgstr "회원가입"
 
 #~ msgid "Test City "
-#~ msgstr "영어"
+#~ msgstr "한국어"
