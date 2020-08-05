@@ -16,7 +16,7 @@
         {% endif %}
           
         <li class="nav_link"><a href="{{ user.get_absolute_url }}"> {% trans '프로필' %} </a></li>
-        <li class="nav_link"><a href="{% url "users:logout" %}"> {% trans '로그아웃' %} x</a></li>
+        <li class="nav_link"><a href="{% url "users:logout" %}"> {% trans '로그아웃' %} </a></li>
       {% else %}
         <li class="nav_link"><a href="{% url "users:login" %}"> {% trans '로그인' %} </a></li>
         <li class="nav_link"><a href="{% url "users:signup" %}"> {% trans '회원가입' %} </a></li>
