@@ -12,7 +12,7 @@ class CreateError(Exception):
     pass
 
 
-def create(request, room, year, month, day):
+def create(request, user, room, year, month, day):
 
     try:
         date_obj = datetime.datetime(year, month, day)

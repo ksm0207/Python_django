@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
-{% load is_booked %}
-{% load i18n %}
+{% load is_booked on_favs i18n %}
 
 {% block page_title  %}
     {{room.name}}
@@ -37,7 +36,13 @@
     <!--  end of name,city,avatar,host.first_name -->
 
        <!-- Create Room information type -->
-       <a class="btn-link block mb-10 w-2/6" href="{% url 'lists:save-room' room.pk %}"> {% trans '즐겨찾기' %}</a>
+       {% on_favs room as on_favs_boolean %}
+       {% if on_favs_boolean  %}
+            <a class="btn-link block mb-10 w-2/6" href="{% url 'lists:save-room' room.pk %}"> {% trans '즐겨찾기 해제' %}</a>
+        {% else %}
+            <a class="btn-link block mb-10 w-2/6" href="{% url 'lists:save-room' room.pk %}"> {% trans '즐겨찾기' %}</a>
+       {% endif %}
+           
         <div class="flex border-section">
             <span class="mr-5 font-light">{{room.room_type}}</span>
             <span class="mr-5 font-light">{{room.beds}} bed{{room.beds|pluralize}}</span>
