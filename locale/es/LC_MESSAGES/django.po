@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-06 09:35+0900\n"
+"POT-Creation-Date: 2020-08-06 10:00+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,6 +95,18 @@ msgstr ""
 msgid "일본어"
 msgstr ""
 
+#: .\users\models.py:51
+msgid "email"
+msgstr ""
+
+#: .\users\models.py:52
+msgid "Github"
+msgstr ""
+
+#: .\users\models.py:53
+msgid "Kakao"
+msgstr ""
+
 #: .\users\models.py:58
 msgid "gender"
 msgstr ""
@@ -103,11 +115,19 @@ msgstr ""
 msgid "bio"
 msgstr ""
 
+#: .\users\models.py:61
+msgid "birthday"
+msgstr ""
+
 #: .\users\models.py:63
 msgid "language"
 msgstr ""
 
-#: .\users\models.py:90
+#: .\users\models.py:70
+msgid "currency"
+msgstr ""
+
+#: .\users\models.py:94
 msgid "이메일 테스트"
 msgstr ""
 

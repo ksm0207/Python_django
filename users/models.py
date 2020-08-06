@@ -48,9 +48,9 @@ class User(AbstractUser):
     LOGIN_KAKAO = "Kakao"
 
     LOGIN_CHOICES = (
-        (LOGIN_EMAIL, "email"),
-        (LOGIN_GITHUB, "Github"),
-        (LOGIN_KAKAO, "Kakao"),
+        (LOGIN_EMAIL, _("email")),
+        (LOGIN_GITHUB, _("Github")),
+        (LOGIN_KAKAO, _("Kakao")),
     )
 
     avatar = models.ImageField(upload_to="avatars", blank=True)
@@ -58,7 +58,7 @@ class User(AbstractUser):
         _("gender"), blank=True, choices=GENDER_CHOICES, max_length=10,
     )
     bio = models.TextField(_("bio"), blank=True)
-    birthday = models.DateField(blank=True, null=True)
+    birthday = models.DateField(_("birthday"), blank=True, null=True)
     language = models.CharField(
         _("language"),
         blank=True,
@@ -67,7 +67,11 @@ class User(AbstractUser):
         default=LANGUAGE_KOREAN,
     )
     currency = models.CharField(
-        blank=True, choices=CURRENCY_CHOICES, max_length=3, default=CURRENCY_KRW
+        _("currency"),
+        blank=True,
+        choices=CURRENCY_CHOICES,
+        max_length=3,
+        default=CURRENCY_KRW,
     )
     superhost = models.BooleanField(default="False")
     email_verified = models.BooleanField(default=True)
