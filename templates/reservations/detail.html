@@ -30,7 +30,7 @@
                 </div>
                 <div class="ml-5 flex flex-col">
                     <span class="font-bold mb-px">호스트에게 연락하세요!</span>
-                    <a  href="#" class="text-green-500 ">메시지 전달하기</a>
+                    <a  href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}" class="text-green-500 ">메시지 전달하기</a>
                 </div>
             </div>
             

@@ -38,9 +38,9 @@
        <!-- Create Room information type -->
        {% on_favs room as on_favs_boolean %}
        {% if on_favs_boolean  %}
-            <a class="btn-link block mb-10 w-2/6" href="{% url 'lists:toggle-room' room.pk %}?action=remove"> {% trans '즐겨찾기 해제' %}</a>
+            <a class="block mb-10 w-2/6 text-green-400" href="{% url 'lists:toggle-room' room.pk %}?action=remove"> {% trans '즐겨찾기 해제' %}</a>
         {% else %}
-            <a class="btn-link block mb-10 w-2/6" href="{% url 'lists:toggle-room' room.pk %}?action=add"> {% trans '즐겨찾기' %}</a>
+            <a class="block mb-10 w-2/6 text-green-400" href="{% url 'lists:toggle-room' room.pk %}?action=add"> {% trans '즐겨찾기' %}</a>
        {% endif %}
            
         <div class="flex border-section">

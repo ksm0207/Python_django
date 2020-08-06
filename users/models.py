@@ -7,6 +7,7 @@ from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 from django.shortcuts import reverse
 from django.utils.translation import gettext_lazy as _
+from core import managers as core_managers
 
 
 class User(AbstractUser):
@@ -73,6 +74,7 @@ class User(AbstractUser):
         max_length=3,
         default=CURRENCY_KRW,
     )
+    objects = core_managers.CustomModelManager()
     superhost = models.BooleanField(default="False")
     email_verified = models.BooleanField(default=True)
     email_secret = models.CharField(max_length=20, default="", blank=True)
