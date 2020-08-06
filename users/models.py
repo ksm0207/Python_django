@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 from django.shortcuts import reverse
+from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
@@ -17,9 +18,9 @@ class User(AbstractUser):
     GENDER_OTHER = "other"
 
     GENDER_CHOICES = (
-        (GENDER_MALE, "Male"),
-        (GENDER_FEMALE, "Female"),
-        (GENDER_OTHER, "Other"),
+        (GENDER_MALE, _("Male")),
+        (GENDER_FEMALE, _("Female")),
+        (GENDER_OTHER, _("Other")),
     )
 
     LANGUAGE_ENGLISH = "영어"
@@ -28,10 +29,10 @@ class User(AbstractUser):
     LANGUAGE_JAPAN = "일본어"
 
     LANGUAGE_CHOICES = (
-        (LANGUAGE_ENGLISH, "영어"),
-        (LANGUAGE_KOREAN, "한국어"),
-        (LANGUAGE_CHINA, "중국어"),
-        (LANGUAGE_JAPAN, "일본어"),
+        (LANGUAGE_ENGLISH, _("영어")),
+        (LANGUAGE_KOREAN, _("한국어")),
+        (LANGUAGE_CHINA, _("중국어")),
+        (LANGUAGE_JAPAN, _("일본어")),
     )
 
     CURRENCY_USD = "usd"
@@ -53,12 +54,17 @@ class User(AbstractUser):
     )
 
     avatar = models.ImageField(upload_to="avatars", blank=True)
-    bio = models.TextField(blank=True)
+    gender = models.CharField(
+        _("gender"), blank=True, choices=GENDER_CHOICES, max_length=10,
+    )
+    bio = models.TextField(_("bio"), blank=True)
     birthday = models.DateField(blank=True, null=True)
-
-    gender = models.CharField(blank=True, choices=GENDER_CHOICES, max_length=10,)
     language = models.CharField(
-        blank=True, choices=LANGUAGE_CHOICES, max_length=25, default=LANGUAGE_KOREAN
+        _("language"),
+        blank=True,
+        choices=LANGUAGE_CHOICES,
+        max_length=25,
+        default=LANGUAGE_KOREAN,
     )
     currency = models.CharField(
         blank=True, choices=CURRENCY_CHOICES, max_length=3, default=CURRENCY_KRW
@@ -81,7 +87,7 @@ class User(AbstractUser):
                 "emails/verify_email.html", {"secret": secret}
             )
             send_mail(
-                "이메일 테스트",
+                _("이메일 테스트"),
                 strip_tags(html_message),
                 settings.EMAIL_FROM,
                 [self.email],

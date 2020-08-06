@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-04 14:00+0900\n"
+"POT-Creation-Date: 2020-08-06 09:35+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,6 +57,59 @@ msgstr "Iniciar sesión"
 #: .\templates\partials\nav.html:22
 msgid "회원가입"
 msgstr "Regístrate"
+
+#: .\templates\rooms\room_list.html:27
+#, python-format
+msgid "Page %(current_page)s of %(total_pages)s"
+msgstr ""
+
+#: .\users\mixins.py:13
+msgid "유효하지 않은 요청입니다."
+msgstr ""
+
+#: .\users\models.py:21
+msgid "Male"
+msgstr ""
+
+#: .\users\models.py:22
+msgid "Female"
+msgstr ""
+
+#: .\users\models.py:23
+msgid "Other"
+msgstr ""
+
+#: .\users\models.py:32
+msgid "영어"
+msgstr ""
+
+#: .\users\models.py:33
+msgid "한국어"
+msgstr ""
+
+#: .\users\models.py:34
+msgid "중국어"
+msgstr ""
+
+#: .\users\models.py:35
+msgid "일본어"
+msgstr ""
+
+#: .\users\models.py:58
+msgid "gender"
+msgstr ""
+
+#: .\users\models.py:60
+msgid "bio"
+msgstr ""
+
+#: .\users\models.py:63
+msgid "language"
+msgstr ""
+
+#: .\users\models.py:90
+msgid "이메일 테스트"
+msgstr ""
 
 #~ msgid "Test City "
 #~ msgstr "스페인어"

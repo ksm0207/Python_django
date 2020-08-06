@@ -2,6 +2,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.utils.translation import gettext_lazy as _
 
 
 class EmailLoginOnlyView(UserPassesTestMixin):
@@ -9,7 +10,7 @@ class EmailLoginOnlyView(UserPassesTestMixin):
         return self.request.user.login_method == "email"
 
     def handle_no_permission(self):
-        messages.error(self.request, "유효하지 않은 요청입니다.")
+        messages.error(self.request, _("유효하지 않은 요청입니다."))
         return redirect("core:home")
 
 
