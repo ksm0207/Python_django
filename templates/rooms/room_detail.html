@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load is_booked %}
+{% load i18n %}
 
 {% block page_title  %}
     {{room.name}}
@@ -36,6 +37,7 @@
     <!--  end of name,city,avatar,host.first_name -->
 
        <!-- Create Room information type -->
+       <a class="btn-link block mb-10 w-2/6" href="{% url 'lists:save-room' room.pk %}"> {% trans '즐겨찾기' %}</a>
         <div class="flex border-section">
             <span class="mr-5 font-light">{{room.room_type}}</span>
             <span class="mr-5 font-light">{{room.beds}} bed{{room.beds|pluralize}}</span>
@@ -122,6 +124,7 @@
         {% else %}
             {% if not request.session.is_hosting  %}
              {% for calendar in room.get_calendars %}
+
              <!-- Start Calendar -->
              <div class="mb-20">
                 <!-- Create Calendar Title -->
