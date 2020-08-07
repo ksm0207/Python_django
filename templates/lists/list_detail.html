@@ -8,9 +8,10 @@
 
 <div class="min-h-75vh">
     <div class="flex flex-col items-center">
-         {{user.list}}
+        {% include 'mixins/user_avatar.html'%}
     </div>
         <h3 class="mb-15 p-10 text-2xl text-center">{{user.first_name}} 님의 즐겨찾기 목록 입니다.</h3>
+
     <div class="container mx-auto pb-10">
         <div class="flex flex-wrap -mx-40 mb-10">
             {% for room in user.list.rooms.all  %}
