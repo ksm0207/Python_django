@@ -3,7 +3,7 @@ from django.http import Http404
 from django.shortcuts import redirect, reverse, render
 from django.views.generic import View
 from users import models as user_models
-from . import models, forms
+from . import models
 
 
 def go_conversation(request, host_pk, guest_pk):
