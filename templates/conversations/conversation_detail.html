@@ -50,6 +50,7 @@
                     {% endfor %}
                 {% endif %}
             </div>
+            
             <form class="mt-10 w-1/2 mx-auto" method="POST">
                  {% csrf_token %}
                 <input class="border-box mb-5"  name="message" placeholder="코멘트를 남겨보세요!" required>
