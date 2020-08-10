@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block page_title  %}
+    Home
+{% endblock page_title  %}
+
+{% block content  %}
+
+
+<div class="container mx-auto pb-10">
+     <div class="flex flex-col items-center">
+        {% include 'mixins/user_avatar.html'%}
+    </div>
+        <h3 class="mb-15 p-10 text-2xl text-center">{{user.first_name}} 님의 예약하신 목록 입니다.</h3>
+
+<!--    <div class=" rounded-xl -mx-40 bg-gray-200 h-60vh mt-30 mb-24 bg-cover bg-center" style=" background-image:url(static/img/cafe_number01.png)"></div>-->
+
+   <div class="flex flex-wrap -mx-40 mb-10">
+
+<!--    </div>-->
+
+
+    {% for reservation in reservations  %}
+        {% if reservation.guest.id == user.id %}
+            <div>
+                <span class="fond-bold">{{reservation.room}}/<span>
+            </div>
+        {%endif%}
+<!--       <br>  {{reservation.id}}-->
+<!--  <br> {{reservation.status}}-->
+<!--       <br> {{reservation.guest}}-->
+
+<!--        <br> {{reservation.status}}-->
+
+<!--       <br> {{reservation.room}}-->
+
+<!--       <br> {{reservation.guest}}-->
+
+        <br><br>
+<!--            day = models.DateField()-->
+<!--    reservation = models.ForeignKey("Reservation", on_delete=models.CASCADE)-->
+
+    {% endfor %}
+
+        {% for room in guest.reservation.room.all  %}
+                {% include 'mixins/room_card.html' with room=room %}
+            {% endfor %}
+       아 제발
+    </div>
+    <div class="flex items-center justify-center">
+    {% if page_obj.has_previous  %}
+        <a href="?page={{page_obj.previous_page_number}}" class="text-green-300">
+            <i class="fas fa-arrow-left fa-lg"></i>
+        </a>
+    {% endif  %}
+
+       <span class="mx-3 font-medium text-lg ">
+            {% blocktrans with current_page=page_obj.number total_pages=page_obj.paginator.num_pages %}Page {{current_page}} of {{total_pages}}{% endblocktrans %}
+        </span>
+
+
+    {% if page_obj.has_next%}
+        <a href="?page={{page_obj.next_page_number}}" class="text-green-300">
+            <i class="fas fa-arrow-right fa-lg"></i>
+        </a>
+        {% endif %}
+    </div>
+
+    </div>
+{% endblock  %}

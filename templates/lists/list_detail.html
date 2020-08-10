@@ -17,6 +17,7 @@
             {% for room in user.list.rooms.all  %}
                 {% include 'mixins/room_card.html' with room=room %}
             {% endfor %}
+            {{user.list.rooms}}
         </div>
     </div>
 </div>

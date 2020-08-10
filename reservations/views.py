@@ -3,7 +3,7 @@ from django.http import Http404
 from django.contrib import messages
 from django.shortcuts import render, redirect, reverse
 from rooms import models as room_models
-from django.views.generic import View
+from django.views.generic import View, ListView
 from reviews import forms as review_forms
 from . import models
 
@@ -66,3 +66,32 @@ def edit_reservation(request, pk, verb):
     reservation.save()
     messages.success(request, "선택하신 예약취소 요청이 완료 되었습니다.")
     return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
+
+
+
+# def toggle_room(request, room_pk):
+#     room = room_models.Room.objects.get_or_none(pk=room_pk)
+#     if room is not None :
+#         the_list, _ = models.List.objects.get_or_create(user=request.user, name="즐겨찾기")
+#         if action == "add":
+#             the_list.rooms.add(room)
+#         elif action == "remove":
+#             the_list.rooms.remove(room)
+#     return redirect(reverse("rooms:detail", kwargs={"pk": room_pk}))
+
+
+
+class ReservationListView(ListView):
+    """ HomeView Definition (홈뷰 유형 정의)"""
+
+    model = models.Reservation
+    paginate_by = 12
+    paginate_orphans = 5
+    ordering = "created"
+    context_object_name = "reservations"
+    template_name = "reservations/reservation_list.html"
+
+
+
+
+
