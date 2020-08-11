@@ -21,12 +21,13 @@
             {% endfor %}
         </div>
 
-        
+
+
         {% for reservation in reservations  %}
-                {{reservation.guest.id}} 
-                {{user.id}}
-                {{reservation.check_in}}
-                {{reservation.room}}
+<!--                {{reservation.guest.id}} -->
+<!--                {{user.id}}-->
+<!--                {{reservation.check_in}}-->
+<!--                {{reservation.room}}-->
         {% endfor %}
             
 
@@ -35,8 +36,9 @@
         {% if reservation.guest.id == user.id %}
             <span class="font-bold text-green-500">
                  <a  href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}"
-                 class="text-green-500 ">{{reservation.room}}
-                </a>
+                 class="text-green-500"> <img src="{{reservation.room.first_photo}}"  /> </a>
+<!--                {{reservation.room.first_photo}}-->
+
             </span>
         {%endif%}
 

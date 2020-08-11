@@ -81,6 +81,16 @@ class SeeReservation(ListView):
         print(photos)
         return photos
 
+    def first_photo(self):
+        try:
+            (photo,) = self.photos.all()[:1]
+            print(photo)
+            return photo.file.url
+        except ValueError:
+            return None
+
+
+
     # the_reservation = reservation_models.Reservation.objects.get_or_none(guest=user)
     # print(the_reservation)
 
