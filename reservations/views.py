@@ -76,6 +76,11 @@ class SeeReservation(ListView):
     ordering = "created"
     context_object_name = "reservations"
 
+    def get_queryset(self):
+        photos = super().get_queryset()
+        print(photos)
+        return photos
+
     # the_reservation = reservation_models.Reservation.objects.get_or_none(guest=user)
     # print(the_reservation)
 
