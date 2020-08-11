@@ -68,30 +68,33 @@ def edit_reservation(request, pk, verb):
     return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
 
 
-
-# def toggle_room(request, room_pk):
-#     room = room_models.Room.objects.get_or_none(pk=room_pk)
-#     if room is not None :
-#         the_list, _ = models.List.objects.get_or_create(user=request.user, name="즐겨찾기")
-#         if action == "add":
-#             the_list.rooms.add(room)
-#         elif action == "remove":
-#             the_list.rooms.remove(room)
-#     return redirect(reverse("rooms:detail", kwargs={"pk": room_pk}))
-
-
-
-class ReservationListView(ListView):
-    """ HomeView Definition (홈뷰 유형 정의)"""
-
+class SeeReservation(ListView):
+    template_name = "reservations/reservation_list.html"
     model = models.Reservation
     paginate_by = 12
     paginate_orphans = 5
     ordering = "created"
     context_object_name = "reservations"
-    template_name = "reservations/reservation_list.html"
+
+    # the_reservation = reservation_models.Reservation.objects.get_or_none(guest=user)
+    # print(the_reservation)
 
 
+# class ReservationListView(View):
+#     pass
+# def get(self, *args, **kwargs):
+#     pk = kwargs.get("pk")
+#     reservation = models.Reservation.objects.get_or_none(pk=pk)
+#     print(reservation)
+#     if not reservation:
+#         raise Http404()
+#     return render(
+#         self.request,
+#         "reservations/reservation_list.html",
+#         {"reservation": reservation},
+#     )
+# """ HomeView Definition (홈뷰 유형 정의)"""
 
 
+# template_name = "reservations/reservation_list.html"
 
