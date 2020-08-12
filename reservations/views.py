@@ -72,44 +72,15 @@ class SeeReservation(ListView):
     template_name = "reservations/reservation_list.html"
     model = models.Reservation
     paginate_by = 12
-    paginate_orphans = 5
+    paginate_orphans = 1
     ordering = "created"
     context_object_name = "reservations"
 
+
     def get_queryset(self):
-        photos = super().get_queryset()
-        print(photos)
-        return photos
-
-    def first_photo(self):
-        try:
-            (photo,) = self.photos.all()[:1]
-            print(photo)
-            return photo.file.url
-        except ValueError:
-            return None
-
-
-
-    # the_reservation = reservation_models.Reservation.objects.get_or_none(guest=user)
-    # print(the_reservation)
-
-
-# class ReservationListView(View):
-#     pass
-# def get(self, *args, **kwargs):
-#     pk = kwargs.get("pk")
-#     reservation = models.Reservation.objects.get_or_none(pk=pk)
-#     print(reservation)
-#     if not reservation:
-#         raise Http404()
-#     return render(
-#         self.request,
-#         "reservations/reservation_list.html",
-#         {"reservation": reservation},
-#     )
-# """ HomeView Definition (홈뷰 유형 정의)"""
-
-
-# template_name = "reservations/reservation_list.html"
+        # 중단점 라인번호 클릭
+        # A
+        reservation = super().get_queryset()
+        print(reservation)
+        return reservation
 

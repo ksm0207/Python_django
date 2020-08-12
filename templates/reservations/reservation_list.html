@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load is_booked  i18n %}
 
 {% block page_title  %}
     Home
@@ -13,50 +14,50 @@
     </div>
         <h3 class="mb-15 p-10 text-2xl text-center">
             {{user.first_name}} 님의 예약하신 목록 입니다.
-            
+
+            {{day.number}}
         </h3>
-        <div class="flex flex-wrap -mx-40 mb-10">
-            {% for room in reservation.room.all  %}
-                {% include 'mixins/room_card.html' with room=room %}
-            {% endfor %}
-        </div>
 
-
-
+    <div class="container mx-auto my-10 flex flex-col">
+        <!-- Start Photo List  B -->
         {% for reservation in reservations  %}
-<!--                {{reservation.guest.id}} -->
-<!--                {{user.id}}-->
-<!--                {{reservation.check_in}}-->
-<!--                {{reservation.room}}-->
+            {% if reservation.guest.id == user.id %}
+            <div class="mb-10 border p-6 border-gray-400 flex justify-between">
+                <div class="flex items-start">
+                    <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}">
+                        <img src="{{reservation.room.first_photo}}" class="w-48 h-48"/>
+                        {{reservation.room.host.pk}} In 호스트
+                        {{reservation.guest.pk}} In 게스트
+
+                    </a>
+                    <span class="ml-10 text-xl text-green-400"> {{reservation.room}} <br> {{reservation.check_in}} {{reservation.check_out}}</span>
+                </div>
+                <!-- Button Width  -->
+                <div class="flex flex-col w-1/5 mt-10">
+                    <a class="btn-link mb-5 bg-green-300" href="#">수정</a>
+                    <a class="btn-link bg-red-600" href="#">삭제</a>
+                </div>
+                <!-- endof Button Width  -->
+            </div>
+            {%endif%}
         {% endfor %}
-            
+        <div class="flex items-center justify-center">
+            {% if page_obj.has_previous  %}
+                <a href="?page={{page_obj.previous_page_number}}" class="text-green-300">
+                    <i class="fas fa-arrow-left fa-lg"></i>
+                </a>
+            {% endif  %}
 
-   <div class="flex flex-wrap -mx-40 mb-10">
-    {% for reservation in reservations  %}
-        {% if reservation.guest.id == user.id %}
-            <span class="font-bold text-green-500">
-                 <a  href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}"
-                 class="text-green-500"> <img src="{{reservation.room.first_photo}}"  /> </a>
-<!--                {{reservation.room.first_photo}}-->
+       <span class="mx-3 font-medium text-lg ">
+            {% blocktrans with current_page=page_obj.number total_pages=page_obj.paginator.num_pages %}Page {{current_page}} of {{total_pages}}{% endblocktrans %}
+        </span>
 
-            </span>
-        {%endif%}
 
-    {% endfor %}
-    
-    
+    {% if page_obj.has_next%}
+        <a href="?page={{page_obj.next_page_number}}" class="text-green-300">
+            <i class="fas fa-arrow-right fa-lg"></i>
+        </a>
+        {% endif %}
+    </div>
 {% endblock  %}
 
-
-<!--       <br>  {{reservation.id}}-->
-<!--  <br> {{reservation.status}}-->
-<!--       <br> {{reservation.guest}}-->
-
-<!--        <br> {{reservation.status}}-->
-
-<!--       <br> {{reservation.room}}-->
-
-<!--       <br> {{reservation.guest}}-->
-
-<!--            day = models.DateField()-->
-<!--    reservation = models.ForeignKey("Reservation", on_delete=models.CASCADE)--

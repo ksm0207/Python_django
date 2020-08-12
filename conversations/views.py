@@ -16,6 +16,7 @@ def go_conversation(request, host_pk, guest_pk,):
         except models.Conversation.DoesNotExist:
             conversation = models.Conversation.objects.create()
             conversation.participants.add(user_one, user_two)
+            conversation.save()
         return redirect(reverse("conversations:detail", kwargs={"pk": conversation.pk}))
 
 
