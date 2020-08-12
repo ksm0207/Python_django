@@ -28,14 +28,17 @@
                         <img src="{{reservation.room.first_photo}}" class="w-48 h-48"/>
                         {{reservation.room.host.pk}} In 호스트
                         {{reservation.guest.pk}} In 게스트
-
                     </a>
                     <span class="ml-10 text-xl text-green-400"> {{reservation.room}} <br> {{reservation.check_in}} {{reservation.check_out}}</span>
                 </div>
                 <!-- Button Width  -->
                 <div class="flex flex-col w-1/5 mt-10">
-                    <a class="btn-link mb-5 bg-green-300" href="#">수정</a>
-                    <a class="btn-link bg-red-600" href="#">삭제</a>
+                    {% if reservation.status == 'pending' %}
+                            <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}?action=remove" class="btn-link block px-5">예약 취소</a>
+                            {% if reservation.room.host == user %}
+                                <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="btn-link block px-3 mb-5">예약 확인</a>
+                            {% endif %}
+                        {% endif %}
                 </div>
                 <!-- endof Button Width  -->
             </div>
