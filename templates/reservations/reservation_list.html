@@ -22,29 +22,27 @@
         <!-- Start Photo List  B -->
         {% for reservation in reservations  %}
             {% if reservation.guest.id == user.id %}
-            <div class="mb-10 border p-6 border-gray-400 flex justify-between">
+            <div class="mb-20 border p-6 border-gray-400 flex justify-between">
                 <div class="flex items-start">
                     <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}">
-                        <img src="{{reservation.room.first_photo}}" class="w-48 h-48"/>
-                        {{reservation.room.host.pk}} In 호스트
-                        {{reservation.guest.pk}} In 게스트
+                        <img src="{{reservation.room.first_photo}}" class="w-70 h-60"/>
+<!--                        {{reservation.room.host.pk}} In 호스트-->
+<!--                        {{reservation.guest.pk}} In 게스트-->
                     </a>
-                    <span class="ml-10 text-xl text-green-400"> {{reservation.room}} <br> {{reservation.check_in}} {{reservation.check_out}}</span>
+                    <span class="ml-10 text-xl text-green-400"> {{reservation.room}} <br> {{reservation.check_in}} {{reservation.check_out}} {{reservation.status}}</span>
                 </div>
-                <!-- Button Width  -->
                 <div class="flex flex-col w-1/5 mt-10">
                     {% if reservation.status == 'pending' %}
-                            <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}?action=remove" class="btn-link block px-5">예약 취소</a>
-                            {% if reservation.room.host == user %}
-                                <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="btn-link block px-3 mb-5">예약 확인</a>
-                            {% endif %}
-                        {% endif %}
+                        <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}?action=remove" class="btn-link block px-5">예약 취소</a>
+                    {% endif %}
                 </div>
+                <!-- Button Width  -->
+
                 <!-- endof Button Width  -->
             </div>
             {%endif%}
-        {% endfor %}
-        <div class="flex items-center justify-center">
+        {% endfor %}'
+        <div class="flex items-center justify-center mb-20">
             {% if page_obj.has_previous  %}
                 <a href="?page={{page_obj.previous_page_number}}" class="text-green-300">
                     <i class="fas fa-arrow-left fa-lg"></i>
@@ -64,3 +62,6 @@
     </div>
 {% endblock  %}
 
+<!--{% if reservation.room.host == user %}-->
+<!--                                <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="btn-link block px-3 mb-5">예약 확인</a>-->
+<!--                            {% endif %}-->
