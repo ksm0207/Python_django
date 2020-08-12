@@ -19,26 +19,28 @@
         </h3>
 
     <div class="container mx-auto my-10 flex flex-col">
-        <!-- Start Photo List  B -->
         {% for reservation in reservations  %}
             {% if reservation.guest.id == user.id %}
-            <div class="mb-20 border p-6 border-gray-400 flex justify-between">
+            <div class="mb-20 border p-6 border-gray-500 flex justify-between">
                 <div class="flex items-start">
                     <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}">
-                        <img src="{{reservation.room.first_photo}}" class="w-70 h-60"/>
+                        <img  src="{{reservation.room.first_photo}}" class="w-56 h-48 rounded-lg"/>
 <!--                        {{reservation.room.host.pk}} In 호스트-->
 <!--                        {{reservation.guest.pk}} In 게스트-->
                     </a>
-                    <span class="ml-10 text-xl text-green-400"> {{reservation.room}} <br> {{reservation.check_in}} {{reservation.check_out}} {{reservation.status}}</span>
+                    <div class="text-green-500 flex flex-col ml-20 text-lg font-bold">
+                        <span>방 정보:    {{reservation.room}}</span>
+                        <span>예약시작:   {{reservation.check_in}}</span>
+                        <span>예약종료:   {{reservation.check_out}}</span>
+                        <span>예약상태:   {{reservation.status}}</span>
+                        <span>호스트:     {{reservation.room.host.first_name}}</span>
+                    </div>
                 </div>
-                <div class="flex flex-col w-1/5 mt-10">
+                <div class="flex flex-col w-1/5 mt-16 ">
                     {% if reservation.status == 'pending' %}
                         <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}?action=remove" class="btn-link block px-5">예약 취소</a>
                     {% endif %}
                 </div>
-                <!-- Button Width  -->
-
-                <!-- endof Button Width  -->
             </div>
             {%endif%}
         {% endfor %}'
@@ -48,12 +50,9 @@
                     <i class="fas fa-arrow-left fa-lg"></i>
                 </a>
             {% endif  %}
-
        <span class="mx-3 font-medium text-lg ">
             {% blocktrans with current_page=page_obj.number total_pages=page_obj.paginator.num_pages %}Page {{current_page}} of {{total_pages}}{% endblocktrans %}
         </span>
-
-
     {% if page_obj.has_next%}
         <a href="?page={{page_obj.next_page_number}}" class="text-green-300">
             <i class="fas fa-arrow-right fa-lg"></i>
