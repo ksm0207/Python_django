@@ -11,7 +11,14 @@
     <div class="flex flex-col items-center">
         {% include 'mixins/user_avatar.html'%}
     </div>
-    <h3 class="mb-15 p-10 text-2xl text-center">{{user.first_name}}님!  예약하신 리스트 입니다.</h3>
+    
+    {% if user.reservations.count == 0 %}
+        <h3 class="mb-15 p-10 text-2xl text-center">예약하신 목록이 없습니다.</h3>
+    {% else %}
+        <h3 class="mb-15 p-10 text-2xl text-center">{{user.first_name}}님의 예약하신 리스트 입니다.</h3>
+        {{user.room}}
+    {% endif %}
+        
     
       <div class="container mx-auto pb-10">
         <div class="flex flex-wrap -mx-40 mb-10">
@@ -28,9 +35,7 @@
                         {% if reservation.room.host.superhost  %}
                             <span class=" mr-2 uppercase font-bold text-xs border border-black text-black rounded py-px px-1">superhost</span>      
                         {% endif %}
-                    <span class="text-sm text-gray-800 block truncate">{{reservation.room.city}}  /  {{reservation.room.country.name}}</span>                   
-
-                                      
+                    <span class="text-sm text-gray-800 block truncate">{{reservation.room.city}}  /  {{reservation.room.country.name}}</span>
                     </div>
                     <span class="text-sm flex items-center">
                     <i class="fas fa-star text-orange-500 text-xs mr-1"></i>{{reservation.room.total_rating}}
@@ -46,21 +51,13 @@
                 {% endif %}
                     {% if reservation.status == 'confirmed' %}
                     <a href="{% url 'reservations:edit' reservation.pk 'confirmed' %}" class="text-green-500 block mt-3">확인 (  리뷰를 남길수있습니다!  )</a>
-                 
                  {% endif %}
             </a>
-
             </div>
-
             {% endif %}
-                
-           
-            {% endfor %}
+        {% endfor %}
         </div>
       </div>
-      
-      
-          
 
       <div class="flex items-center justify-center mb-20">
         {% if page_obj.has_previous  %}
@@ -77,27 +74,5 @@
     </a>
     {% endif %}
 </div>
-
-
-    
-
 </div>
-
-<!-- <div class="min-h-75vh">
-    <div class="flex flex-col items-center">
-        {% include 'mixins/user_avatar.html'%}
-    </div>
-        <h3 class="mb-15 p-10 text-2xl text-center">{{user.first_name}} 님의 즐겨찾기 목록 입니다.</h3>    
-</div> -->
-
-
-
-
-
-
-
 {% endblock  %}
-
-<!--{% if reservation.room.host == user %}-->
-<!--                                <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="btn-link block px-3 mb-5">예약 확인</a>-->
-<!--                            {% endif %}-->

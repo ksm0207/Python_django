@@ -6,10 +6,10 @@
             <a href="{%url 'users:switch-hosting'%}">
                 {% if request.session.is_hosting  %}
                       {% trans '호스팅 종료' %} 
-                      <li class="nav_link"><a href="{% url 'reservations:see-host' %}">{% trans "예약 알림" %} ({{reservations.guest}})</a></li>
+                      <li class="nav_link"><a href="{% url 'reservations:see-host' %}">{% trans "예약 알림" %} </a></li>
                 {% else %}
                       {% trans '호스팅 시작' %}
-                      <li class="nav_link"><a href="{% url 'reservations:see-reservation' %}">{% trans "나의 예약" %} ({{user.reservations.count}})</a></li>
+                      <li class="nav_link"><a href="{% url 'reservations:see-reservation' %}">{% trans "예약보기" %} ({{user.reservations.count}})</a></li>
                 {% endif %}
             </a>
         </li>
