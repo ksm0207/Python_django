@@ -70,10 +70,6 @@ def edit_reservation(request, pk, verb):
     # return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
 
 
-
-
-
-
 class SeeReservation(ListView):
     template_name = "reservations/reservation_list.html"
     model = models.Reservation
@@ -81,7 +77,6 @@ class SeeReservation(ListView):
     paginate_orphans = 1
     ordering = "created"
     context_object_name = "reservations"
-
 
     def get_queryset(self):
         # 중단점 라인번호 클릭

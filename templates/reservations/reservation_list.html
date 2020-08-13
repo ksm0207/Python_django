@@ -7,75 +7,86 @@
 
 {% block content  %}
 
-
-<div class="container mx-auto pb-10">
-     <div class="flex flex-col items-center">
+<div class="min-h-75vh">
+    <div class="flex flex-col items-center">
         {% include 'mixins/user_avatar.html'%}
     </div>
-        <h3 class="mb-15 p-10 text-2xl text-center">
-            {{user.first_name}} 님의 예약하신 목록 입니다.
-
-            {{day.number}}
-        </h3>
-
-    <div class="container mx-auto my-10 flex flex-col">
-        {% for reservation in reservations  %}
+    <h3 class="mb-15 p-10 text-2xl text-center">{{user.first_name}}님!  예약하신 리스트 입니다.</h3>
+    
+      <div class="container mx-auto pb-10">
+        <div class="flex flex-wrap -mx-40 mb-10">
+            
+            {% for reservation  in reservations  %}
+            
             {% if reservation.guest.id == user.id %}
-            <div class="mb-20 border p-6 border-gray-500 flex justify-between">
-                <div class="flex items-start">
-                    <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}">
-                        <img  src="{{reservation.room.first_photo}}" class="w-56 h-48 rounded-lg"/>
-<!--                        {{reservation.room.host.pk}} In 호스트-->
-<!--                        {{reservation.guest.pk}} In 게스트-->
-                         <i class="fas fa-star text-orange-500 text-xs mr-1"></i>{{reservation.room.total_rating}}
-                         {% if reservation.room.host.superhost  %}
-                             <span class=" mr-2 uppercase font-bold text-xs border border-black text-black rounded py-px px-1">superhost</span>
+                 <div class="w-1/4 mb-5 px-2 overflow-hidden">
+                <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}">
+                <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2" style="background-image: url({{reservation.room.first_photo}});"></div>
+                <div class="flex justify-between mb-2 truncate">
+                    <div class="w-4/5 overflow-hidden flex">
+                        {% if reservation.room.host.superhost  %}
+                            <span class=" mr-2 uppercase font-bold text-xs border border-black text-black rounded py-px px-1">superhost</span>      
                         {% endif %}
+                    <span class="text-sm text-gray-800 block truncate">{{reservation.room.city}}  /  {{reservation.room.country.name}}</span>                   
 
-                    </a>
-
-                    <div class="text-green-500 flex flex-col ml-20 text-lg font-bold">
-                        <span>방 정보:    {{reservation.room}}</span>
-                        <span>예약시작:   {{reservation.check_in}}</span>
-                        <span>예약종료:   {{reservation.check_out}}</span>
-                        <span>예약상태:   {{reservation.status}}</span>
-                        <span>호스트:     {{reservation.room.host.first_name}}</span>
-
-                        {% if reservation.status == 'confirmed' %}
-                            <span calss="text-gray-500"> 소중한 후기를 남겨보세요 !</span>
-
-                        {% endif %}
-                        {% if reservation.status == 'pending' %}
-                            <span>{{reservation.room.host.first_name}}</span>
-                        {% endif %}
+                                      
                     </div>
+                    <span class="text-sm flex items-center">
+                    <i class="fas fa-star text-orange-500 text-xs mr-1"></i>{{reservation.room.total_rating}}
+                    </span>
                 </div>
-                <div class="flex flex-col w-1/5 mt-16 ">
-                    {% if reservation.status == 'pending' %}
-                        <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class="btn-link block px-5">예약 취소</a>
-                    {% endif %}
-                    {% if reservation.status == 'confirmed' %}
-                      <a href="{% url 'reservations:edit' reservation.pk 'confirmed' %}" class="btn-link block px-5">확인</a>
-                    {% endif %}
-                </div>
+                <span class="text-black w-11/12 block truncate"> {{reservation.room.name}} </span>
+                <span class="text-black w-11/12 block truncate"> 호스트: {{reservation.room.host.first_name}}  / 예약상태 : {{reservation.status}} </span>
+                <span class="text-sm text-black w-11/12 block truncate"> 예약신청: {{reservation.check_in}} / 예약종료 : {{reservation.check_out}} </span>
+                {% if reservation.status == 'pending' %}
+                     <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class=" text-red-600 block mt-3">예약취소</a>
+                {% endif %}
+            </a>
+                {% if reservation.status == 'confirmed' %}
+                    <a href="{% url 'reservations:edit' reservation.pk 'confirmed' %}" class="text-green-500 block mt-3">확인 (  리뷰를 남길수있습니다!  )</a>
+                 {% endif %}        
             </div>
-            {%endif%}
-        {% endfor %}'
-        <div class="flex items-center justify-center mb-20">
-            {% if page_obj.has_previous  %}
-                <a href="?page={{page_obj.previous_page_number}}" class="text-green-300">
-                    <i class="fas fa-arrow-left fa-lg"></i>
-                </a>
-            {% endif  %}
-       <span class="mx-3 font-medium text-lg ">
-            {% blocktrans with current_page=page_obj.number total_pages=page_obj.paginator.num_pages %}Page {{current_page}} of {{total_pages}}{% endblocktrans %}
-        </span>
-    {% if page_obj.has_next%}
-        <a href="?page={{page_obj.next_page_number}}" class="text-green-300">
-            <i class="fas fa-arrow-right fa-lg"></i>
-        </a>
-        {% endif %}
+            {% endif %}
+                
+           
+            {% endfor %}
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center mb-20">
+        {% if page_obj.has_previous  %}
+            <a href="?page={{page_obj.previous_page_number}}" class="text-green-300">
+                <i class="fas fa-arrow-left fa-lg"></i>
+            </a>
+        {% endif  %}
+   <span class="mx-3 font-medium text-lg ">
+        {% blocktrans with current_page=page_obj.number total_pages=page_obj.paginator.num_pages %}Page {{current_page}} of {{total_pages}}{% endblocktrans %}
+    </span>
+{% if page_obj.has_next%}
+    <a href="?page={{page_obj.next_page_number}}" class="text-green-300">
+        <i class="fas fa-arrow-right fa-lg"></i>
+    </a>
+    {% endif %}
+</div>
+
+
+    
+
+</div>
+
+<!-- <div class="min-h-75vh">
+    <div class="flex flex-col items-center">
+        {% include 'mixins/user_avatar.html'%}
     </div>
+        <h3 class="mb-15 p-10 text-2xl text-center">{{user.first_name}} 님의 즐겨찾기 목록 입니다.</h3>    
+</div> -->
+
+
+
+
+
+
+
 {% endblock  %}
 
 <!--{% if reservation.room.host == user %}-->
