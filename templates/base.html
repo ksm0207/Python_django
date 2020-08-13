@@ -15,15 +15,15 @@
        <a href="{% url "core:home" %}" class="mr-6">
            <img class="w-8" src="{% static 'img/cafe.png' %}"/>
       </a>    
-    {% block search-bar %}
-    <form method="get" action="{% url "rooms:search" %} " class="w-9/12">
-      <input
-            class="search-box border px-5 w-full font-medium text-gray-900 placeholder-gray-600 py-3 rounded-lg  border-gray-400  shadow-md hover:shadow-lg focus:outline-none"
-            name="city"
-            placeholder="{% trans "도시를 검색해보세요 ! " %}"
-          />
-    </form>
-    {% endblock search-bar  %}
+<!--    {% block search-bar %}-->
+<!--    <form method="get" action="{% url "rooms:search" %} " class="w-9/12">-->
+<!--      <input-->
+<!--            class="search-box border px-5 w-full font-medium text-gray-900 placeholder-gray-600 py-3 rounded-lg  border-gray-400  shadow-md hover:shadow-lg focus:outline-none"-->
+<!--            name="city"-->
+<!--            placeholder="{% trans "도시를 검색해보세요 ! " %}"-->
+<!--          />-->
+<!--    </form>-->
+<!--    {% endblock search-bar  %}-->
     </div>
     {% include "partials/nav.html"  %}
   </header>

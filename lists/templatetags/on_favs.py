@@ -11,6 +11,6 @@ def on_favs(context, room):
     the_list = list_models.List.objects.get_or_none(user=user, name="즐겨찾기")
     print(the_list)
     if the_list is not None:
-        print(room in the_list.rooms.all())
+        return room in the_list.rooms.all()
 
     return False
