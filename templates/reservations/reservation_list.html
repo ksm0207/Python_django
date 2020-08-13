@@ -47,9 +47,7 @@
                     <a href="{% url 'reservations:edit' reservation.pk 'confirmed' %}" class="text-green-500 block mt-3">확인 (  리뷰를 남길수있습니다!  )</a>
                  {% endif %}        
             </div>
-            {% if reservation.room.host != reservation.guest %}
-            {{reservation.guest}}
-      {% endif %}
+
             {% endif %}
                 
            

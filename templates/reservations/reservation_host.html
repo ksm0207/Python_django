@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load is_booked  i18n %}
+
+{% block page_title  %}
+    Home
+{% endblock page_title  %}
+
+{% block content  %}
+
+<div class="min-h-75vh">
+    <div class="flex flex-col items-center">
+        {% include 'mixins/user_avatar.html'%}
+    </div>
+    <h3 class="mb-15 p-10 text-2xl text-center">{{user.first_name}} </h3>
+      <div class="container mx-auto pb-10">
+        <div class="flex flex-wrap -mx-40 mb-10">
+            {% for reservation  in reservations  %}
+            {% if reservation.room.host.id == user.id %}
+         
+                 <div class="w-1/4 mb-5 px-2 overflow-hidden">
+                <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}">
+                <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2" style="background-image: url({{reservation.room.first_photo}});"></div>
+                <div class="flex justify-between mb-2 truncate">
+                    <div class="w-4/5 overflow-hidden flex">
+                        {% if reservation.room.host.superhost  %}
+                            <span class=" mr-2 uppercase font-bold text-xs border border-black text-black rounded py-px px-1">superhost</span>      
+                        {% endif %}
+                    <span class="text-sm text-gray-800 block truncate">{{reservation.room.city}}  /  {{reservation.room.country.name}}</span>                   
+
+                                      
+                    </div>
+                    <span class="text-sm flex items-center">
+                    <i class="fas fa-star text-orange-500 text-xs mr-1"></i>{{reservation.room.total_rating}}
+                    </span>
+                </div>
+                <span class="text-black w-11/12 block truncate"> {{reservation.room.name}} </span>
+                <span class="text-black w-11/12 block truncate"> 게스트: {{reservation.guest.first_name}}  / 예약상태 : {{reservation.status}} </span>
+                <span class="text-sm text-black w-11/12 block truncate"> 예약신청: {{reservation.check_in}} / 예약종료 : {{reservation.check_out}} </span>
+                {% if reservation.status == 'pending' %}
+                    <a href="{% url 'reservations:edit' reservation.pk 'confirmed' %}" class="text-green-500 block mt-3">확인 (  리뷰를 남길수있습니다!  )</a>
+                     
+                {% endif %}
+            </a>
+                {% if reservation.status == 'confirmed' %}
+                    <a href="{% url 'reservations:edit' reservation.pk 'confirmed' %}" class="text-green-500 block mt-3">확인 (  리뷰를 남길수있습니다!  )</a>
+                 {% endif %}        
+            </div>
+          
+            {% endif %}
+                
+           
+            {% endfor %}
+        </div>
+      </div>
+      
+      
+          
+
+      <div class="flex items-center justify-center mb-20">
+        {% if page_obj.has_previous  %}
+            <a href="?page={{page_obj.previous_page_number}}" class="text-green-300">
+                <i class="fas fa-arrow-left fa-lg"></i>
+            </a>
+        {% endif  %}
+   <span class="mx-3 font-medium text-lg ">
+        {% blocktrans with current_page=page_obj.number total_pages=page_obj.paginator.num_pages %}Page {{current_page}} of {{total_pages}}{% endblocktrans %}
+    </span>
+{% if page_obj.has_next%}
+    <a href="?page={{page_obj.next_page_number}}" class="text-green-300">
+        <i class="fas fa-arrow-right fa-lg"></i>
+    </a>
+    {% endif %}
+</div>
+
+
+    
+
+</div>
+
+<!-- <div class="min-h-75vh">
+    <div class="flex flex-col items-center">
+        {% include 'mixins/user_avatar.html'%}
+    </div>
+        <h3 class="mb-15 p-10 text-2xl text-center">{{user.first_name}} 님의 즐겨찾기 목록 입니다.</h3>    
+</div> -->
+
+
+
+
+
+
+
+{% endblock  %}
+
+<!--{% if reservation.room.host == user %}-->
+<!--                                <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="btn-link block px-3 mb-5">예약 확인</a>-->
+<!--                            {% endif %}-->
+{% for reservation in reservations  %}
+
+
+{% if reservation.room.host.id == user.id %}
+
+    {{reservation.room}}<br><br>
+    {{reservation.guest.first_name}}
+    {{reservation.check_in}} / {{reservation.check_out}}<br>
+    {{guest}}
+
+{% endif %}
+    
+
+<!-- {{reservation.room}}<br>
+{{reservation.room.host}}<br>
+{{reservation.guest}}<br> -->
+    
+    
+{% endfor %}
+    

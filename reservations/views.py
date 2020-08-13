@@ -51,21 +51,20 @@ class ReservationDetailView(View):
 
 
 def edit_reservation(request, pk, verb):
-
     reservation = models.Reservation.objects.get_or_none(pk=pk)
     if not reservation or (
         reservation.guest != request.user and reservation.room.host != request.user
     ):
         raise Http404()
-
     if verb == "confirm":
         reservation.status = models.Reservation.STATUS_CONFIRMED
     elif verb == "cancel":
         reservation.status = models.Reservation.STATUS_CANCELED
         models.BookedDay.objects.filter(reservation=reservation)
-        models.Reservation.objects.filter(pk=pk).delete()
+        models.Reservation.objects.filter(pk=pk)
         messages.success(request, "선택하신 예약취소 요청이 완료 되었습니다.")
 
+    reservation.save()
     return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
     # return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
 
@@ -89,10 +88,10 @@ class SeeReservation(ListView):
 class HostReservationList(ListView):
     template_name = "reservations/reservation_host.html"
     model = models.Reservation
+    context_object_name = "reservations"
 
     def get_queryset(self):
-        # 중단점 라인번호 클릭
-        # A
+
         reservation_list = super().get_queryset()
         print(reservation_list)
         return reservation_list
