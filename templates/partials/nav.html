@@ -14,6 +14,7 @@
         {% if request.session.is_hosting  %}
             <li class="nav_link"><a href="{% url 'rooms:create' %}">{% trans '방 만들기' %}</a></li>
         {% endif %}
+        <li class="nav_link"><a href="{% url 'reservations:see-host' %}">{% trans "호스트 테스트" %} ({{user.reservations.count}})</a></li>
         <li class="nav_link"><a href="{% url 'reservations:see-reservation' %}">{% trans "나의 예약" %} ({{user.reservations.count}})</a></li>
 
         <li class="nav_link"><a href="{% url 'lists:see-favs' %}">{% trans "즐겨찾기" %} ({{user.list.rooms.count}})</a></li>

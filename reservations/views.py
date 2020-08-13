@@ -85,3 +85,15 @@ class SeeReservation(ListView):
         print(reservation)
         return reservation
 
+
+class HostReservationList(ListView):
+    template_name = "reservations/reservation_host.html"
+    model = models.Reservation
+
+    def get_queryset(self):
+        # 중단점 라인번호 클릭
+        # A
+        reservation_list = super().get_queryset()
+        print(reservation_list)
+        return reservation_list
+

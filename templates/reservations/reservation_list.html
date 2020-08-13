@@ -19,6 +19,7 @@
             {% for reservation  in reservations  %}
             
             {% if reservation.guest.id == user.id %}
+         
                  <div class="w-1/4 mb-5 px-2 overflow-hidden">
                 <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}">
                 <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2" style="background-image: url({{reservation.room.first_photo}});"></div>
@@ -46,12 +47,18 @@
                     <a href="{% url 'reservations:edit' reservation.pk 'confirmed' %}" class="text-green-500 block mt-3">확인 (  리뷰를 남길수있습니다!  )</a>
                  {% endif %}        
             </div>
+            {% if reservation.room.host != reservation.guest %}
+            {{reservation.guest}}
+      {% endif %}
             {% endif %}
                 
            
             {% endfor %}
         </div>
       </div>
+      
+      
+          
 
       <div class="flex items-center justify-center mb-20">
         {% if page_obj.has_previous  %}
