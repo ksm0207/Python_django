@@ -41,11 +41,15 @@
                 <span class="text-sm text-black w-11/12 block truncate"> 예약신청: {{reservation.check_in}} / 예약종료 : {{reservation.check_out}} </span>
                 {% if reservation.status == 'pending' %}
                      <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class=" text-red-600 block mt-3">예약취소</a>
+                 {% elif reservation.status == 'canceled' %}
+                    <a href="{% url 'reservations:edit' reservation.pk 'canceled' %}" class="text-red-500 block mt-3">삭제</a>
                 {% endif %}
-            </a>
-                {% if reservation.status == 'confirmed' %}
+                    {% if reservation.status == 'confirmed' %}
                     <a href="{% url 'reservations:edit' reservation.pk 'confirmed' %}" class="text-green-500 block mt-3">확인 (  리뷰를 남길수있습니다!  )</a>
-                 {% endif %}        
+                 
+                 {% endif %}
+            </a>
+
             </div>
 
             {% endif %}

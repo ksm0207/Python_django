@@ -63,6 +63,9 @@ def edit_reservation(request, pk, verb):
         models.BookedDay.objects.filter(reservation=reservation)
         models.Reservation.objects.filter(pk=pk)
         messages.success(request, "선택하신 예약취소 요청이 완료 되었습니다.")
+    elif verb == "canceled":
+        models.Reservation.objects.filter(pk=pk).delete()
+        return redirect(reverse("reservations:see-reservation"))
 
     reservation.save()
     return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
