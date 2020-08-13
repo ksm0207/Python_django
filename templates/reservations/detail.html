@@ -25,13 +25,29 @@
     
             <div class="flex p-5 border-b w-full">
                 <div class="flex flex-col items-center">
-                    {% include 'mixins/user_avatar.html' with user=reservation.room.host %}
-                    <span class="mt-2 text-gray-500">{{reservation.room.host.first_name}}</span>
+                    
+                    {% if reservation.room.host != user %}
+                        {% include 'mixins/user_avatar.html' with user=reservation.room.host %}
+                        <span class="mt-2 text-gray-500">{{reservation.room.host.first_name}}</span>
+                    {% else %}
+                         {% include 'mixins/user_avatar.html' with user=reservation.guest %}
+                         <span class="mt-2 text-gray-500">{{reservation.guest.first_name}}</span>
+                    {% endif %}
+                   
                 </div>
-                <div class="ml-5 flex flex-col">
-                    <span class="font-bold mb-px">호스트에게 연락하세요!</span>
-                    <a  href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}" class="text-green-500 ">메시지 전달하기</a>
-                </div>
+                
+                
+                {% if reservation.room.host == user %}
+                    <div class="ml-5 flex flex-col">
+                        <span class="font-bold mb-px">게스트에게 연락하세요!</span>
+                        <a  href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}" class="text-green-500 ">메시지 전달하기</a>
+                    </div>
+                {% else %}
+                    <div class="ml-5 flex flex-col">
+                        <span class="font-bold mb-px">호스트에게 연락하세요!</span>
+                        <a  href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}" class="text-green-500 ">메시지 전달하기</a>
+                    </div>
+                {% endif %}
             </div>
             
             <div class="py-10 px-5">
@@ -47,9 +63,9 @@
                 
                         {% if reservation.status == 'pending' %}
                             <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class="btn-link block px-5">예약 취소</a>
-                            {% if reservation.room.host == user %}
-                                <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="btn-link block px-3 mb-5">예약 확인</a>
-                            {% endif %}
+                        {% endif %}
+                        {% if reservation.room.host == user %}
+                            <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="btn-link block px-5 mt-5">예약 확인</a>
                         {% endif %}   
                     {% endif %}
                 {% endif %}
