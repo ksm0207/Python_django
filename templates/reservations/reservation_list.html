@@ -27,18 +27,35 @@
                         <img  src="{{reservation.room.first_photo}}" class="w-56 h-48 rounded-lg"/>
 <!--                        {{reservation.room.host.pk}} In 호스트-->
 <!--                        {{reservation.guest.pk}} In 게스트-->
+                         <i class="fas fa-star text-orange-500 text-xs mr-1"></i>{{reservation.room.total_rating}}
+                         {% if reservation.room.host.superhost  %}
+                             <span class=" mr-2 uppercase font-bold text-xs border border-black text-black rounded py-px px-1">superhost</span>
+                        {% endif %}
+
                     </a>
+
                     <div class="text-green-500 flex flex-col ml-20 text-lg font-bold">
                         <span>방 정보:    {{reservation.room}}</span>
                         <span>예약시작:   {{reservation.check_in}}</span>
                         <span>예약종료:   {{reservation.check_out}}</span>
                         <span>예약상태:   {{reservation.status}}</span>
                         <span>호스트:     {{reservation.room.host.first_name}}</span>
+
+                        {% if reservation.status == 'confirmed' %}
+                            <span calss="text-gray-500"> 소중한 후기를 남겨보세요 !</span>
+
+                        {% endif %}
+                        {% if reservation.status == 'pending' %}
+                            <span>{{reservation.room.host.first_name}}</span>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="flex flex-col w-1/5 mt-16 ">
                     {% if reservation.status == 'pending' %}
-                        <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}?action=remove" class="btn-link block px-5">예약 취소</a>
+                        <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class="btn-link block px-5">예약 취소</a>
+                    {% endif %}
+                    {% if reservation.status == 'confirmed' %}
+                      <a href="{% url 'reservations:edit' reservation.pk 'confirmed' %}" class="btn-link block px-5">확인</a>
                     {% endif %}
                 </div>
             </div>
