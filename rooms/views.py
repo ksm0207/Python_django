@@ -25,6 +25,9 @@ class RoomDetail(DetailView):
 
     model = models.Room
 
+    def get_object(self, queryset=None):
+        room = super().get_object(queryset=queryset)
+        return room
 
 class SearchView(View):
 
