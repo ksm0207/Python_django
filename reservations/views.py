@@ -98,6 +98,5 @@ class HostReservationList(ListView):
     def get_queryset(self):
 
         reservation_list = super().get_queryset()
-        print(reservation_list)
         return reservation_list
 

@@ -46,6 +46,7 @@
                 <span class="text-sm text-black w-11/12 block truncate"> 예약신청: {{reservation.check_in}} / 예약종료 : {{reservation.check_out}} </span>
                 {% if reservation.status == 'pending' %}
                      <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class=" text-red-600 block mt-3">예약취소</a>
+                     <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk  %}" class=" text-red-600 block mt-3">메시지 알림 ({{conversation.messages.count}}) </a>
                  {% elif reservation.status == 'canceled' %}
                     <a href="{% url 'reservations:edit' reservation.pk 'canceled' %}" class="text-red-500 block mt-3">삭제</a>
                 {% endif %}
