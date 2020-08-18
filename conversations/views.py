@@ -11,7 +11,9 @@ def go_conversation(
 ):
     user_one = user_models.User.objects.get_or_none(pk=host_pk)
     user_two = user_models.User.objects.get_or_none(pk=guest_pk)
+
     if user_one is not None and user_two is not None:
+
         try:
             conversation = models.Conversation.objects.get(
                 Q(participants=user_one) & Q(participants=user_two)
@@ -21,8 +23,6 @@ def go_conversation(
             conversation = models.Conversation.objects.create()
             conversation.participants.add(user_one, user_two)
             conversation.save()
-            message = models.Message.objects.all()
-            print(message)
 
         return redirect(reverse("conversations:detail", kwargs={"pk": conversation.pk}))
 
@@ -36,11 +36,9 @@ class SeeMessageView(ListView):
 class ConversationDetailView(View):
     def get(self, *args, **kwargs):
         pk = kwargs.get("pk")
-        print(pk)
         conversation = models.Conversation.objects.get_or_none(pk=pk)
         if not conversation:
             raise Http404()
-
         return render(
             self.request,
             "conversations/conversation_detail.html",

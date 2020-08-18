@@ -61,7 +61,7 @@ def edit_reservation(request, pk, verb):
     if verb == "confirm":
         reservation.status = models.Reservation.STATUS_CONFIRMED
         messages.success(request, "예약을 확인하였습니다.")
-        print(verb)
+      
     elif verb == "cancel":
         reservation.status = models.Reservation.STATUS_CANCELED
         models.BookedDay.objects.filter(reservation=reservation)
@@ -88,7 +88,7 @@ class SeeReservation(ListView):
         # 중단점 라인번호 클릭
         # A
         reservation = super().get_queryset()
-        print(reservation)
+     
         return reservation
 
 
