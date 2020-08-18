@@ -6,12 +6,14 @@ from rooms import models as room_models
 from django.views.generic import View, ListView
 from reviews import forms as review_forms
 from . import models
+from django.contrib.auth.decorators import login_required
 
 
 class CreateError(Exception):
     pass
 
 
+@login_required
 def create(request, room, year, month, day):
 
     try:

@@ -11,19 +11,18 @@ def go_conversation(
 ):
     user_one = user_models.User.objects.get_or_none(pk=host_pk)
     user_two = user_models.User.objects.get_or_none(pk=guest_pk)
-    print(user_one, user_two)
     if user_one is not None and user_two is not None:
         try:
             conversation = models.Conversation.objects.get(
-                Q(participants=user_one) & Q(participants=user_two)   
+                Q(participants=user_one) & Q(participants=user_two)
             )
-            print(conversation)
 
         except models.Conversation.DoesNotExist:
             conversation = models.Conversation.objects.create()
             conversation.participants.add(user_one, user_two)
             conversation.save()
-            print(conversation)
+            message = models.Message.objects.all()
+            print(message)
 
         return redirect(reverse("conversations:detail", kwargs={"pk": conversation.pk}))
 
@@ -33,20 +32,15 @@ class SeeMessageView(ListView):
     template_name = "conversations_test.html"
     context_object_name = "messages"
 
-    try:
-        pass
-    except expression as identifier:
-        pass
-    else:
-        pass
-
 
 class ConversationDetailView(View):
     def get(self, *args, **kwargs):
         pk = kwargs.get("pk")
+        print(pk)
         conversation = models.Conversation.objects.get_or_none(pk=pk)
         if not conversation:
             raise Http404()
+
         return render(
             self.request,
             "conversations/conversation_detail.html",
