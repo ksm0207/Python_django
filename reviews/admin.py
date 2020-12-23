@@ -7,4 +7,4 @@ class ReviewAdmin(admin.ModelAdmin):
 
     """ Review Admin Definition(리뷰 관리자 정의)"""
 
-    list_display = ('__str__', "rating_average")
+    list_display = ("__str__", "rating_average")
